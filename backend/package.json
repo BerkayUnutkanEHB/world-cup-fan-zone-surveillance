@@ -5,7 +5,8 @@
 	"scripts": {
 		"start": "node server.js",
 		"dev": "nodemon server.js",
-		"seed:supporters": "node seeders/supporterSeeder.js"
+		"seed:supporters": "node seeders/supporterSeeder.js",
+		"seed:zones": "node seeders/zoneSeeder.js"
 	},
 	"keywords": [],
 	"author": "",
