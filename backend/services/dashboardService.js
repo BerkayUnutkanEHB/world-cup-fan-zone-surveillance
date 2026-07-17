@@ -10,7 +10,7 @@ const getDashboardStatistics = async () => {
 
 	const druksteZone = await dashboardRepository.getDruksteZone();
 	const topRiskSupporters = await dashboardRepository.getTopRiskSupporters();
-
+	const zoneDensity = await dashboardRepository.getZoneDensity();
 	const gemiddeldeRisicoscore =
 		await dashboardRepository.getGemiddeldeRisicoscore();
 
@@ -32,6 +32,7 @@ const getDashboardStatistics = async () => {
 		gemiddeldeRisicoscore,
 		algemeenRisiconiveau,
 		topRiskSupporters,
+		zoneDensity,
 	};
 };
 

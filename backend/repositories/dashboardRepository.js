@@ -67,6 +67,28 @@ const getTopRiskSupporters = async () => {
 		.limit(5)
 		.select("-_id naam team risicoscore");
 };
+const getZoneDensity = async () => {
+	const zones = await Zone.find();
+
+	const zoneDensity = await Promise.all(
+		zones.map(async (zone) => {
+			const aantalDetecties = await Detection.countDocuments({
+				zone: zone._id,
+			});
+
+			const bezettingsgraad = (aantalDetecties / zone.capaciteit) * 100;
+
+			return {
+				naam: zone.naam,
+				capaciteit: zone.capaciteit,
+				aantalDetecties,
+				bezettingsgraad: Math.round(bezettingsgraad * 100) / 100,
+			};
+		}),
+	);
+
+	return zoneDensity;
+};
 module.exports = {
 	getTotalSupporters,
 	getTotalDetections,
@@ -74,4 +96,5 @@ module.exports = {
 	getDruksteZone,
 	getGemiddeldeRisicoscore,
 	getTopRiskSupporters,
+	getZoneDensity,
 };
