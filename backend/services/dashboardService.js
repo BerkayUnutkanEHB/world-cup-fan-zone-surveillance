@@ -10,11 +10,26 @@ const getDashboardStatistics = async () => {
 
 	const druksteZone = await dashboardRepository.getDruksteZone();
 
+	const gemiddeldeRisicoscore =
+		await dashboardRepository.getGemiddeldeRisicoscore();
+
+	let algemeenRisiconiveau;
+
+	if (gemiddeldeRisicoscore < 30) {
+		algemeenRisiconiveau = "Laag";
+	} else if (gemiddeldeRisicoscore < 60) {
+		algemeenRisiconiveau = "Gemiddeld";
+	} else {
+		algemeenRisiconiveau = "Hoog";
+	}
+
 	return {
 		totaalSupporters,
 		totaalDetecties,
 		hoogRisicoSupporters,
 		druksteZone,
+		gemiddeldeRisicoscore,
+		algemeenRisiconiveau,
 	};
 };
 

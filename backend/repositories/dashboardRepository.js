@@ -44,9 +44,28 @@ const getDruksteZone = async () => {
 		aantalDetecties: resultaat[0].aantalDetecties,
 	};
 };
+
+const getGemiddeldeRisicoscore = async () => {
+	const resultaat = await Supporter.aggregate([
+		{
+			$group: {
+				_id: null,
+				gemiddeldeRisicoscore: { $avg: "$risicoscore" },
+			},
+		},
+	]);
+
+	if (resultaat.length === 0) {
+		return 0;
+	}
+
+	return resultaat[0].gemiddeldeRisicoscore;
+};
+
 module.exports = {
 	getTotalSupporters,
 	getTotalDetections,
 	getHighRiskSupportersCount,
 	getDruksteZone,
+	getGemiddeldeRisicoscore,
 };
