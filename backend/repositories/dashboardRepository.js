@@ -89,6 +89,14 @@ const getZoneDensity = async () => {
 
 	return zoneDensity;
 };
+const getRecenteDetecties = async () => {
+	return Detection.find()
+		.sort({ tijdstip: -1 })
+		.limit(10)
+		.select("-_id -__v -createdAt -updatedAt")
+		.populate("supporter", "naam team")
+		.populate("zone", "naam");
+};
 module.exports = {
 	getTotalSupporters,
 	getTotalDetections,
@@ -97,4 +105,5 @@ module.exports = {
 	getGemiddeldeRisicoscore,
 	getTopRiskSupporters,
 	getZoneDensity,
+	getRecenteDetecties,
 };
