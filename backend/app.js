@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 
 const detectionRoutes = require("./routes/detectionRoutes");
 const supporterRoutes = require("./routes/supporterRoutes");
@@ -7,6 +8,7 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 const risicoWaarschuwingRoutes = require("./routes/risicoWaarschuwingRoutes");
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 

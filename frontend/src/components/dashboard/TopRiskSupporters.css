@@ -1,0 +1,35 @@
+.top-risk {
+	margin-top: 32px;
+	padding: 24px;
+	background-color: #ffffff;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+}
+
+.top-risk-title {
+	margin: 0 0 20px;
+	font-size: 22px;
+	color: #111827;
+}
+
+.top-risk-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.top-risk-table th,
+.top-risk-table td {
+	padding: 14px;
+	text-align: left;
+	border-bottom: 1px solid #e5e7eb;
+}
+
+.top-risk-table th {
+	font-size: 13px;
+	color: #6b7280;
+	text-transform: uppercase;
+}
+
+.top-risk-table td {
+	color: #111827;
+}
