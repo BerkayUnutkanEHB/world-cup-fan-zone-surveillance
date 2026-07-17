@@ -5,9 +5,16 @@ const getDashboardStatistics = async () => {
 
 	const totaalDetecties = await dashboardRepository.getTotalDetections();
 
+	const hoogRisicoSupporters =
+		await dashboardRepository.getHighRiskSupportersCount();
+
+	const druksteZone = await dashboardRepository.getDruksteZone();
+
 	return {
 		totaalSupporters,
 		totaalDetecties,
+		hoogRisicoSupporters,
+		druksteZone,
 	};
 };
 
