@@ -61,11 +61,17 @@ const getGemiddeldeRisicoscore = async () => {
 
 	return resultaat[0].gemiddeldeRisicoscore;
 };
-
+const getTopRiskSupporters = async () => {
+	return await Supporter.find()
+		.sort({ risicoscore: -1 })
+		.limit(5)
+		.select("-_id naam team risicoscore");
+};
 module.exports = {
 	getTotalSupporters,
 	getTotalDetections,
 	getHighRiskSupportersCount,
 	getDruksteZone,
 	getGemiddeldeRisicoscore,
+	getTopRiskSupporters,
 };
