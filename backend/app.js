@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const interactionRoutes = require("./routes/interactionRoutes");
 const detectionRoutes = require("./routes/detectionRoutes");
 const supporterRoutes = require("./routes/supporterRoutes");
 const zoneRoutes = require("./routes/zoneRoutes");
@@ -19,5 +19,6 @@ app.use("/api/zones", zoneRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/risico-waarschuwingen", risicoWaarschuwingRoutes);
 app.use("/api/simulation", simulationRoutes);
+app.use("/api/interactions", interactionRoutes);
 
 module.exports = app;
