@@ -1,20 +1,51 @@
 .zone-density {
-	margin-top: 32px;
 	padding: 24px;
-	background: white;
-	border: 1px solid #e5e7eb;
-	border-radius: 10px;
+
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 20px;
+
+	background:
+		linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.02),
+			rgba(255, 255, 255, 0.01)
+		),
+		rgba(10, 22, 45, 0.92);
+
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+
+	box-shadow: 0 18px 35px rgba(0, 0, 0, 0.22);
 }
 
 .zone-density-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
 	margin: 0 0 24px;
-	font-size: 22px;
-	font-weight: 600;
-	color: #111827;
+
+	font-size: 20px;
+	font-weight: 800;
+
+	color: white;
+}
+
+.zone-density-title::before {
+	content: "";
+
+	width: 8px;
+	height: 8px;
+
+	border-radius: 50%;
+
+	background: #31e6ff;
+
+	box-shadow: 0 0 12px #31e6ff;
 }
 
 .zone-item {
-	margin-bottom: 18px;
+	margin-bottom: 22px;
 }
 
 .zone-item:last-child {
@@ -24,24 +55,56 @@
 .zone-header {
 	display: flex;
 	justify-content: space-between;
-	gap: 16px;
-	margin-bottom: 8px;
-	font-weight: 500;
-	color: #374151;
+	align-items: center;
+
+	margin-bottom: 10px;
+
+	font-size: 14px;
+	font-weight: 600;
+
+	color: #f3f7fc;
 }
 
 .progress-bar {
 	width: 100%;
-	height: 12px;
-	background: #e5e7eb;
-	border-radius: 999px;
+	height: 14px;
+
 	overflow: hidden;
+
+	background: rgba(255, 255, 255, 0.08);
+
+	border-radius: 999px;
 }
 
 .progress-fill {
 	height: 100%;
 	min-width: 2px;
-	background: #2563eb;
+
 	border-radius: 999px;
-	transition: width 0.3s ease;
+
+	background: linear-gradient(90deg, #31e6ff, #28a5ff, #8b5cf6);
+
+	box-shadow: 0 0 12px rgba(49, 230, 255, 0.45);
+
+	transition: width 0.35s ease;
+}
+
+.zone-item:nth-child(1) .progress-fill {
+	background: linear-gradient(90deg, #31e6ff, #28a5ff);
+}
+
+.zone-item:nth-child(2) .progress-fill {
+	background: linear-gradient(90deg, #28a5ff, #8b5cf6);
+}
+
+.zone-item:nth-child(3) .progress-fill {
+	background: linear-gradient(90deg, #8b5cf6, #f34f93);
+}
+
+.zone-item:nth-child(4) .progress-fill {
+	background: linear-gradient(90deg, #f34f93, #ff4d5d);
+}
+
+.zone-item:nth-child(5) .progress-fill {
+	background: linear-gradient(90deg, #ffd166, #ff9f43);
 }
