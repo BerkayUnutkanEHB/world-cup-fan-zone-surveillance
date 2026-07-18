@@ -6,6 +6,7 @@ import TopRiskSupporters from "../components/dashboard/TopRiskSupporters";
 import RecenteDetecties from "../components/dashboard/RecenteDetecties";
 import ZoneDensity from "../components/dashboard/ZoneDensity";
 import RisicoWaarschuwingen from "../components/dashboard/RisicoWaarschuwingen";
+import { logInteraction } from "../services/interactionService";
 
 import {
 	getDashboardData,
@@ -42,6 +43,21 @@ const Dashboard = () => {
 		try {
 			setSimulatieBezig(true);
 			setFoutmelding("");
+
+			let uid = localStorage.getItem("uid");
+
+			if (!uid) {
+				uid = `USER-${crypto.randomUUID()}`;
+				localStorage.setItem("uid", uid);
+			}
+
+			await logInteraction({
+				uid,
+				action: "click",
+				page: "dashboard",
+				element: "simulation-button",
+				duration: 0,
+			});
 
 			await runSimulation();
 			await loadDashboard();
