@@ -6,6 +6,7 @@ const supporterRoutes = require("./routes/supporterRoutes");
 const zoneRoutes = require("./routes/zoneRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const risicoWaarschuwingRoutes = require("./routes/risicoWaarschuwingRoutes");
+const simulationRoutes = require("./routes/simulationRoutes");
 
 const app = express();
 app.use(cors());
@@ -17,5 +18,6 @@ app.use("/api/supporters", supporterRoutes);
 app.use("/api/zones", zoneRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/risico-waarschuwingen", risicoWaarschuwingRoutes);
+app.use("/api/simulation", simulationRoutes);
 
 module.exports = app;

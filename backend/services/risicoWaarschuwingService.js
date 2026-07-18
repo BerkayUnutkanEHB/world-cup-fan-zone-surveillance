@@ -1,5 +1,5 @@
 const risicoWaarschuwingRepository = require("../repositories/risicoWaarschuwingRepository");
-const BEZETTINGSGRAAD_DREMPEL = 80;
+const BEZETTINGSGRAAD_DREMPEL = 5;
 const maakRisicoWaarschuwingen = async () => {
 	const zones = await risicoWaarschuwingRepository.getZonesMetDetecties();
 
