@@ -1,9 +1,9 @@
 const express = require("express");
-
-const detectionController = require("../controllers/detectionController");
-
 const router = express.Router();
 
-router.post("/", detectionController.createDetection);
+const detectionController = require("../controllers/detectionController");
+const validateDetection = require("../middleware/validation/detectionValidation");
+
+router.post("/", validateDetection, detectionController.createDetection);
 
 module.exports = router;

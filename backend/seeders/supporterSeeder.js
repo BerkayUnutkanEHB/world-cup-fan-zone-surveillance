@@ -111,7 +111,7 @@ const supporters = [
 	},
 	{
 		uid: "SUP014",
-		naam: "Jacob Harris",
+		naam: "Berkay Unutkan",
 		nationaliteit: "Turkey",
 		team: "Turkey",
 		basisrisico: 32,

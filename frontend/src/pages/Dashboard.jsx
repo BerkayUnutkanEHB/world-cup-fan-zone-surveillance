@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Dashboard.css";
-
+import FanZoneMap from "../components/dashboard/FanZoneMap";
 import StatCard from "../components/dashboard/StatCard";
 import TopRiskSupporters from "../components/dashboard/TopRiskSupporters";
 import RecenteDetecties from "../components/dashboard/RecenteDetecties";
@@ -62,7 +62,9 @@ const Dashboard = () => {
 
 	return (
 		<main className="dashboard">
-			<h1 className="dashboard-title">Dashboard</h1>
+			<h1 className="dashboard-title">
+				World Cup Fan Zone Surveillance Dashboard
+			</h1>
 
 			<button
 				type="button"
@@ -94,6 +96,8 @@ const Dashboard = () => {
 					waarde={dashboardData.algemeenRisiconiveau}
 				/>
 			</section>
+
+			<FanZoneMap zones={dashboardData.zoneDensity} />
 
 			<section className="dashboard-content-grid">
 				<TopRiskSupporters supporters={dashboardData.topRiskSupporters} />
