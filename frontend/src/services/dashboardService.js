@@ -21,3 +21,15 @@ export const getRisicoWaarschuwingen = async () => {
 
 	return response.json();
 };
+
+export const runSimulation = async () => {
+	const response = await fetch("http://localhost:3000/api/simulation/run", {
+		method: "POST",
+	});
+
+	if (!response.ok) {
+		throw new Error("Simulatie kon niet worden uitgevoerd.");
+	}
+
+	return response.json();
+};

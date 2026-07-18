@@ -10,30 +10,47 @@ import RisicoWaarschuwingen from "../components/dashboard/RisicoWaarschuwingen";
 import {
 	getDashboardData,
 	getRisicoWaarschuwingen,
+	runSimulation,
 } from "../services/dashboardService";
 
 const Dashboard = () => {
 	const [dashboardData, setDashboardData] = useState(null);
 	const [waarschuwingen, setWaarschuwingen] = useState([]);
 	const [foutmelding, setFoutmelding] = useState("");
+	const [simulatieBezig, setSimulatieBezig] = useState(false);
+
+	const loadDashboard = async () => {
+		try {
+			const [dashboard, waarschuwingenData] = await Promise.all([
+				getDashboardData(),
+				getRisicoWaarschuwingen(),
+			]);
+
+			setDashboardData(dashboard);
+			setWaarschuwingen(waarschuwingenData);
+			setFoutmelding("");
+		} catch (error) {
+			setFoutmelding(error.message);
+		}
+	};
 
 	useEffect(() => {
-		const loadDashboard = async () => {
-			try {
-				const [dashboard, waarschuwingenData] = await Promise.all([
-					getDashboardData(),
-					getRisicoWaarschuwingen(),
-				]);
-
-				setDashboardData(dashboard);
-				setWaarschuwingen(waarschuwingenData);
-			} catch (error) {
-				setFoutmelding(error.message);
-			}
-		};
-
 		loadDashboard();
 	}, []);
+
+	const handleSimulation = async () => {
+		try {
+			setSimulatieBezig(true);
+			setFoutmelding("");
+
+			await runSimulation();
+			await loadDashboard();
+		} catch (error) {
+			setFoutmelding(error.message);
+		} finally {
+			setSimulatieBezig(false);
+		}
+	};
 
 	if (foutmelding) {
 		return <p>{foutmelding}</p>;
@@ -46,6 +63,15 @@ const Dashboard = () => {
 	return (
 		<main className="dashboard">
 			<h1 className="dashboard-title">Dashboard</h1>
+
+			<button
+				type="button"
+				className="simulation-button"
+				onClick={handleSimulation}
+				disabled={simulatieBezig}
+			>
+				{simulatieBezig ? "Simulatie uitvoeren..." : "Simuleer detectie"}
+			</button>
 
 			<section className="stats-grid">
 				<StatCard
