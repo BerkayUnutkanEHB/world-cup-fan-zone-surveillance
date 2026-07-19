@@ -2,7 +2,8 @@ const risicoWaarschuwingRepository = require("../repositories/risicoWaarschuwing
 const BEZETTINGSGRAAD_DREMPEL = 5;
 const maakRisicoWaarschuwingen = async () => {
 	const zones = await risicoWaarschuwingRepository.getZonesMetDetecties();
-
+	const verdachteSupporters =
+		await risicoWaarschuwingRepository.getVerdachteSupporters();
 	const waarschuwingen = zones
 		.map(({ zone, aantalDetecties }) => {
 			const bezettingsgraad = (aantalDetecties / zone.capaciteit) * 100;
@@ -19,7 +20,14 @@ const maakRisicoWaarschuwingen = async () => {
 			};
 		})
 		.filter(Boolean);
-
+	verdachteSupporters.forEach((supporter) => {
+		waarschuwingen.push({
+			type: "VERDACHTE_SUPPORTER",
+			niveau: "Hoog",
+			supporter: supporter.naam,
+			bericht: `${supporter.naam} bezocht ${supporter.aantalZones} verschillende zones binnen 5 minuten.`,
+		});
+	});
 	return waarschuwingen;
 };
 
