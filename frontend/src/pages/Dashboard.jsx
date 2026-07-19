@@ -36,7 +36,30 @@ const Dashboard = () => {
 	};
 
 	useEffect(() => {
-		loadDashboard();
+		const loadPage = async () => {
+			try {
+				let uid = localStorage.getItem("uid");
+
+				if (!uid) {
+					uid = `USER-${crypto.randomUUID()}`;
+					localStorage.setItem("uid", uid);
+				}
+
+				await logInteraction({
+					uid,
+					action: "navigation",
+					page: "dashboard",
+					element: "dashboard-page",
+					duration: 0,
+				});
+
+				await loadDashboard();
+			} catch (error) {
+				setFoutmelding(error.message);
+			}
+		};
+
+		loadPage();
 	}, []);
 
 	const handleSimulation = async () => {
