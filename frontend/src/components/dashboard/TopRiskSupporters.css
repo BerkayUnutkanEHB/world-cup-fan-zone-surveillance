@@ -1,0 +1,82 @@
+.top-risk {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 24px;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 20px;
+	background:
+		linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.02),
+			rgba(255, 255, 255, 0.01)
+		),
+		rgba(10, 22, 45, 0.92);
+	backdrop-filter: blur(16px);
+	box-shadow: 0 18px 35px rgba(0, 0, 0, 0.22);
+}
+
+.top-risk-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	margin: 0 0 22px;
+
+	font-size: 20px;
+	font-weight: 800;
+	color: #ffffff;
+}
+
+.top-risk-title::before {
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #31e6ff;
+	box-shadow: 0 0 12px #31e6ff;
+}
+
+.top-risk-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.top-risk-table thead {
+	background: rgba(7, 20, 40, 0.95);
+}
+
+.top-risk-table th {
+	padding: 14px;
+	text-align: left;
+
+	font-size: 11px;
+	font-weight: 800;
+
+	color: #8ca0bf;
+
+	letter-spacing: 1px;
+	text-transform: uppercase;
+
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-risk-table td {
+	padding: 16px 14px;
+
+	font-size: 14px;
+
+	color: #f4f7fb;
+
+	border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+	transition: 0.2s;
+}
+
+.top-risk-table tbody tr:hover {
+	background: rgba(49, 230, 255, 0.05);
+}
+
+.top-risk-table tbody tr:last-child td {
+	border-bottom: none;
+}
