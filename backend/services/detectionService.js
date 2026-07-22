@@ -2,6 +2,7 @@ const detectionRepository = require("../repositories/detectionRepository");
 const Supporter = require("../models/supporter");
 const Zone = require("../models/zone");
 
+// Registreert een detectie en verhoogt de risicoscore bij een risicovolle zone.
 const createDetection = async (detectionData) => {
 	const supporter = await Supporter.findById(detectionData.supporter);
 
@@ -16,7 +17,8 @@ const createDetection = async (detectionData) => {
 	}
 
 	const detection = await detectionRepository.createDetection(detectionData);
-
+	// Supporters die een zone met eerdere incidenten bezoeken,
+	// krijgen een hogere risicoscore.
 	if (zone.eerdereRiots === true) {
 		supporter.risicoscore = Math.min(supporter.risicoscore + 10, 100);
 		await supporter.save();

@@ -16,6 +16,7 @@ const getHighRiskSupportersCount = async () => {
 	});
 };
 const getDruksteZone = async () => {
+	// Zoek de zone met het hoogste aantal detecties.
 	const resultaat = await Detection.aggregate([
 		{
 			$group: {
@@ -75,7 +76,7 @@ const getZoneDensity = async () => {
 			const aantalDetecties = await Detection.countDocuments({
 				zone: zone._id,
 			});
-
+			// Bereken de bezettingsgraad van de zone in procent.
 			const bezettingsgraad = (aantalDetecties / zone.capaciteit) * 100;
 
 			return {
@@ -90,6 +91,7 @@ const getZoneDensity = async () => {
 	return zoneDensity;
 };
 const getRecenteDetecties = async () => {
+	// Haal de 10 meest recente detecties op.
 	return Detection.find()
 		.sort({ tijdstip: -1 })
 		.limit(10)

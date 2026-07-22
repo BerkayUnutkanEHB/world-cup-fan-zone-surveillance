@@ -2,6 +2,8 @@ const Detection = require("../models/detection");
 const Zone = require("../models/zone");
 
 const getZonesMetDetecties = async () => {
+	// Geeft per zone het aantal detecties terug.
+
 	const zones = await Zone.find();
 
 	const resultaat = await Promise.all(
@@ -19,7 +21,7 @@ const getZonesMetDetecties = async () => {
 
 	return resultaat;
 };
-
+// Detecteert verdachte supporters op basis van zonebezoeken en risicoscore.
 const getVerdachteSupporters = async () => {
 	const detecties = await Detection.find()
 		.populate("supporter", "uid naam risicoscore")
@@ -27,7 +29,10 @@ const getVerdachteSupporters = async () => {
 		.sort({ tijdstip: 1 });
 
 	const detectiesPerSupporter = new Map();
-
+	// Verdacht gedrag:
+	// - minstens 4 verschillende zones
+	// - binnen 5 minuten
+	// - risicoscore van minstens 60
 	const tijdsvensterInMilliseconden = 5 * 60 * 1000;
 	const minimumAantalZones = 4;
 	const minimumRisicoscore = 60;
