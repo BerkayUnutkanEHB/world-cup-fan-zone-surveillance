@@ -16,7 +16,7 @@ const getDashboardStatistics = async () => {
 		await dashboardRepository.getGemiddeldeRisicoscore();
 
 	let algemeenRisiconiveau;
-
+	// Bepaal het algemene risiconiveau op basis van de gemiddelde risicoscore.
 	if (gemiddeldeRisicoscore < 30) {
 		algemeenRisiconiveau = "Laag";
 	} else if (gemiddeldeRisicoscore < 60) {

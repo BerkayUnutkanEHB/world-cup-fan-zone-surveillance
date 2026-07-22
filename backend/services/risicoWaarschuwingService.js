@@ -4,6 +4,7 @@ const maakRisicoWaarschuwingen = async () => {
 	const zones = await risicoWaarschuwingRepository.getZonesMetDetecties();
 	const verdachteSupporters =
 		await risicoWaarschuwingRepository.getVerdachteSupporters();
+	// Maak waarschuwingen aan voor zones die de bezettingssdrempel overschrijden.
 	const waarschuwingen = zones
 		.map(({ zone, aantalDetecties }) => {
 			const bezettingsgraad = (aantalDetecties / zone.capaciteit) * 100;
@@ -20,6 +21,7 @@ const maakRisicoWaarschuwingen = async () => {
 			};
 		})
 		.filter(Boolean);
+	// Voeg verdachte supporters toe aan de lijst met waarschuwingen.
 	verdachteSupporters.forEach((supporter) => {
 		waarschuwingen.push({
 			type: "VERDACHTE_SUPPORTER",
