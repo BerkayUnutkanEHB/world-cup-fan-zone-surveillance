@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:3000/api/interactions";
+import { API_BASE_URL } from "./api";
+
+const API_URL = `${API_BASE_URL}/api/interactions`;
 
 export const logInteraction = async (interaction) => {
 	try {
