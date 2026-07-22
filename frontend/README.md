@@ -2,101 +2,73 @@
 
 ## Overzicht
 
-De frontend werd ontwikkeld met React en Vite.
+De frontend is gebouwd met React en Vite. Via het dashboard kan een operator de
+actuele situatie in de fan zone opvolgen; op de supporterspagina worden alle
+geregistreerde supporters getoond.
 
-Via het dashboard kan een operator de actuele situatie in de fan zone opvolgen.
-
----
-
-# Pagina's
-
-## Dashboard
-
-Toont onder andere:
-
-- statistieken
-- drukste zone
-- risicowaarschuwingen
-- top supporters
-- recente detecties
-
-## Supporters
-
-Geeft een overzicht van alle geregistreerde supporters met:
-
-- UID
-- naam
-- nationaliteit
-- team
-- basisrisico
-- risicoscore
+De frontend verwacht dat de backend draait (standaard op http://localhost:3000).
 
 ---
 
-# Routing
+## Pagina's en routing
 
-React Router wordt gebruikt.
+Routing verloopt via React Router:
 
-Beschikbare routes:
-
-```
-/
-```
-
-Dashboard
-
-```
-/supporters
-```
-
-Supportersoverzicht
+| Route         | Pagina     | Inhoud                                                                                               |
+| ------------- | ---------- | ---------------------------------------------------------------------------------------------------- |
+| `/`           | Dashboard  | statistieken, drukste zone, bezettingsgraad, top supporters, recente detecties, risicowaarschuwingen |
+| `/supporters` | Supporters | overzicht van alle supporters (uid, naam, nationaliteit, team, basisrisico, risicoscore)             |
 
 ---
 
-# Mappenstructuur
+## Mappenstructuur
 
 ```
 src/
-
-assets/
-components/
-pages/
-services/
-
-App.jsx
-main.jsx
+├── components/
+│   ├── Navbar.jsx             # navigatie tussen de pagina's
+│   └── dashboard/             # dashboardcomponenten (elk met eigen .css)
+│       ├── StatCard
+│       ├── FanZoneMap
+│       ├── ZoneDensity
+│       ├── TopRiskSupporters
+│       ├── RecenteDetecties
+│       └── RisicoWaarschuwingen
+├── pages/                     # Dashboard en Supporters (elk met eigen .css)
+├── services/                  # API-communicatie
+├── App.jsx                    # routing
+└── main.jsx                   # entrypoint
 ```
 
 ---
 
-# Services
+## Services
 
-De frontend communiceert met de backend via services.
+De frontend communiceert met de backend via losse servicebestanden. De basis-URL
+komt uit `api.js` (omgevingsvariabele `VITE_API_URL`, met een fallback naar
+localhost):
 
-Momenteel bevat de applicatie onder andere:
-
-- dashboardService
-- interactionService
-- supporterService
-
----
-
-# Styling
-
-Voor de styling werd gebruik gemaakt van gewone CSS-bestanden.
-
-Elke pagina of component beschikt over zijn eigen stylesheet zodat de code overzichtelijk blijft.
+- `api` – centrale `API_BASE_URL`;
+- `dashboardService` – dashboardstatistieken, risicowaarschuwingen en het
+  starten van een simulatie;
+- `supporterService` – ophalen van alle supporters;
+- `interactionService` – registreren van gebruikersinteracties.
 
 ---
 
-# Installatie
+## Styling
+
+De styling gebeurt met gewone CSS-bestanden. Elke pagina en elk component heeft
+een eigen stylesheet die naast het component staat, zodat de styling
+overzichtelijk en gekoppeld blijft.
+
+---
+
+## Lokaal draaien (zonder Docker)
 
 ```bash
 npm install
-```
-
-Start de development server:
-
-```bash
 npm run dev
 ```
+
+De development server draait op http://localhost:5173.
