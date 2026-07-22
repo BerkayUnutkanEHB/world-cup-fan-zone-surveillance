@@ -1,6 +1,7 @@
-const DASHBOARD_URL = "http://localhost:3000/api/dashboard";
-const RISICO_WAARSCHUWINGEN_URL =
-	"http://localhost:3000/api/risico-waarschuwingen";
+import { API_BASE_URL } from "./api";
+
+const DASHBOARD_URL = `${API_BASE_URL}/api/dashboard`;
+const RISICO_WAARSCHUWINGEN_URL = `${API_BASE_URL}/api/risico-waarschuwingen`;
 
 export const getDashboardData = async () => {
 	const response = await fetch(DASHBOARD_URL);
@@ -23,7 +24,7 @@ export const getRisicoWaarschuwingen = async () => {
 };
 
 export const runSimulation = async () => {
-	const response = await fetch("http://localhost:3000/api/simulation/run", {
+	const response = await fetch(`${API_BASE_URL}/api/simulation/run`, {
 		method: "POST",
 	});
 
