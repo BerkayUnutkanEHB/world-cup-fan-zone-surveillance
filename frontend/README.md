@@ -1,16 +1,102 @@
-# React + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overzicht
 
-Currently, two official plugins are available:
+De frontend werd ontwikkeld met React en Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Via het dashboard kan een operator de actuele situatie in de fan zone opvolgen.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Pagina's
 
-## Expanding the ESLint configuration
+## Dashboard
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Toont onder andere:
+
+- statistieken
+- drukste zone
+- risicowaarschuwingen
+- top supporters
+- recente detecties
+
+## Supporters
+
+Geeft een overzicht van alle geregistreerde supporters met:
+
+- UID
+- naam
+- nationaliteit
+- team
+- basisrisico
+- risicoscore
+
+---
+
+# Routing
+
+React Router wordt gebruikt.
+
+Beschikbare routes:
+
+```
+/
+```
+
+Dashboard
+
+```
+/supporters
+```
+
+Supportersoverzicht
+
+---
+
+# Mappenstructuur
+
+```
+src/
+
+assets/
+components/
+pages/
+services/
+
+App.jsx
+main.jsx
+```
+
+---
+
+# Services
+
+De frontend communiceert met de backend via services.
+
+Momenteel bevat de applicatie onder andere:
+
+- dashboardService
+- interactionService
+- supporterService
+
+---
+
+# Styling
+
+Voor de styling werd gebruik gemaakt van gewone CSS-bestanden.
+
+Elke pagina of component beschikt over zijn eigen stylesheet zodat de code overzichtelijk blijft.
+
+---
+
+# Installatie
+
+```bash
+npm install
+```
+
+Start de development server:
+
+```bash
+npm run dev
+```
